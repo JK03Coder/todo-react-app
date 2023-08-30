@@ -49,6 +49,7 @@ export default function App() {
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="px-6 text-2xl font-medium">Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      {todos.length === 0 && <p className="px-6 ">You have nothing to do</p>}
     </div>
   );
 }
