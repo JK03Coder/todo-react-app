@@ -11,7 +11,7 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
         {title}
       </label>
       <button
-        className="bg-red-500/50 px-2.5 rounded-md border-2 border-red-500 text-red-500"
+        className="bg-red-500/50 px-2.5 rounded-md border-2 border-red-500 text-red-500 h-min self-center"
         onClick={() => deleteTodo(id)}
       >
         Delete
