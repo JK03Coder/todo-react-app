@@ -5,21 +5,22 @@ export function NewTodoForm({ onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (newItem === "") return
+    if (newItem === "") return;
 
-    onSubmit(newItem)
+    onSubmit(newItem);
 
     setNewItem("");
   }
 
   return (
-    <form className="p-6 flex flex-col gap-1" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-1 p-6" onSubmit={handleSubmit}>
       <div className="">
-        <label className="block my-1 py-0.5 dark:text-white" htmlFor="item">
+        <label className="my-1 block py-0.5 dark:text-white" htmlFor="item">
           New Item
         </label>
         <input
-          className="bg-blue-400 py-0.5 border-2 border-blue-300 w-full rounded-md pl-1.5 text-white placeholder:text-blue-900/50"
+          className="w-full rounded-md border-2 border-blue-400 bg-blue-400/50 py-0.5 pl-1.5 text-black outline-none 
+          placeholder:text-blue-400 dark:text-white"
           value={newItem}
           onChange={(e) => setNewItem(e.target.value)}
           type="text"
@@ -27,7 +28,10 @@ export function NewTodoForm({ onSubmit }) {
           placeholder="add an item"
         />
       </div>
-      <button className="bg-blue-300 border-2 py-0.5 border-blue-500 rounded-md text-blue-500 ">
+      <button
+        className="select-none rounded-md border-2 border-blue-500 bg-blue-500/50 py-0.5 font-semibold
+        text-blue-500 shadow-lg shadow-blue-500 transition-colors hover:bg-blue-500/60 hover:shadow-none"
+      >
         Add
       </button>
     </form>
