@@ -1,10 +1,10 @@
 import { TodoItem } from "./TodoItem";
 
-export function TodoList({ todos, toggleTodo, deleteTodo}) {
+export function CompletedList({ todos, toggleTodo, deleteTodo }) {
   return (
     <ul className="flex flex-col gap-2">
       {todos
-        .filter((todo) => !todo.completed)
+        .filter((todo) => todo.completed)
         .map((todo) => {
           return (
             <TodoItem

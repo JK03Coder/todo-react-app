@@ -13,8 +13,8 @@ export function NewTodoForm({ onSubmit }) {
   }
 
   return (
-    <form className="flex flex-col gap-1 p-6" onSubmit={handleSubmit}>
-      <div className="">
+    <form className="flex flex-col gap-2 mb-6" onSubmit={handleSubmit}>
+      <div>
         <label className="my-1 block py-0.5 dark:text-white" htmlFor="item">
           New Item
         </label>

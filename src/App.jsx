@@ -1,13 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
+import { CompletedList } from "./CompletedList";
 
 export default function App() {
   const [todos, setTodos] = useState(() => {
-    const localValue = localStorage.getItem("ITEMS")
-    if (localValue == null) return []
-    return JSON.parse(localValue)
+    const localValue = localStorage.getItem("ITEMS");
+    if (localValue == null) return [];
+    return JSON.parse(localValue);
   });
+
+  const hasCompletedTodos = useMemo(() => {
+    return todos.some((todo) => todo.completed);
+  }, [todos]);
+
+  const hasUncompletedTodos = useMemo(() => {
+    return !todos.some((todo) => !todo.completed);
+  }, [todos]);
 
   useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todos));
@@ -45,11 +54,21 @@ export default function App() {
   }
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="mx-auto max-w-md p-6">
       <NewTodoForm onSubmit={addTodo} />
-      <h1 className="px-6 text-2xl font-medium dark:text-white">Todo List</h1>
+      <h1 className="my-2 text-2xl font-medium dark:text-white">Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
-      {todos.length === 0 && <p className="px-6 dark:text-white">You have nothing to do</p>}
+      {(todos.length === 0 || hasUncompletedTodos) && (
+        <p className="dark:text-white">You have nothing to do</p>
+      )}
+      {hasCompletedTodos && (
+        <hr className="my-6 h-0.5 rounded border-0 bg-gray-300 dark:bg-gray-600" />
+      )}
+      <CompletedList
+        todos={todos}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+      />
     </div>
   );
 }
