@@ -1,6 +1,15 @@
+import { motion } from "framer-motion";
+
 export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
   return (
-    <li className="flex" key={id}>
+    <motion.li
+      layout
+      className="flex"
+      key={id}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <label
         className={`${
           completed && "line-through"
@@ -20,6 +29,6 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
       >
         Delete
       </button>
-    </li>
+    </motion.li>
   );
 }
