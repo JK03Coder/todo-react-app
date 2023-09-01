@@ -16,7 +16,7 @@ export function NewTodoForm({ onSubmit }) {
     <form className="flex flex-col gap-2 mb-6" onSubmit={handleSubmit}>
       <div>
         <label className="my-1 block py-0.5 dark:text-white" htmlFor="item">
-          New Item
+          New Todo
         </label>
         <input
           className="w-full rounded-md border-2 border-blue-400 bg-blue-400/50 py-0.5 pl-1.5 text-black shadow shadow-blue-400/40 outline-none transition-all placeholder:text-blue-400 focus:shadow-blue-400/90 dark:text-white"
