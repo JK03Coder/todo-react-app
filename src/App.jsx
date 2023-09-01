@@ -11,6 +11,12 @@ export default function App() {
     return JSON.parse(localValue);
   });
 
+  const [firstLoad, setFirstLoad] = useState(true);
+
+  useEffect(() => {
+    setFirstLoad(false);
+  }, []);
+
   const hasCompletedTodos = useMemo(() => {
     return todos.some((todo) => todo.completed);
   }, [todos]);
@@ -63,6 +69,7 @@ export default function App() {
           todos={todos}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
+          firstLoad={firstLoad}
         />
         {(todos.length === 0 || hasUncompletedTodos) && (
           <AnimatePresence>
@@ -90,6 +97,7 @@ export default function App() {
           todos={todos}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
+          firstLoad={firstLoad}
         />
       </LayoutGroup>
     </div>

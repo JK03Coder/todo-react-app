@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 
-export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
+export function TodoItem({
+  completed,
+  id,
+  title,
+  toggleTodo,
+  deleteTodo,
+  index,
+  firstLoad,
+}) {
   return (
     <motion.li
       layout
@@ -9,6 +17,7 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ delay: firstLoad ? index * 0.125 : 0 }}
     >
       <label
         className={`${
