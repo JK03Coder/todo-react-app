@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
 import { CompletedList } from "./CompletedList";
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function App() {
   const [todos, setTodos] = useState(() => {
@@ -64,7 +64,7 @@ export default function App() {
     <div className="mx-auto max-w-md p-6">
       <NewTodoForm onSubmit={addTodo} />
       <h1 className="my-2 text-2xl font-medium dark:text-white">Todo List</h1>
-      <LayoutGroup className="flex flex-col">
+      <div className="flex flex-col">
         <TodoList
           todos={todos}
           toggleTodo={toggleTodo}
@@ -72,24 +72,21 @@ export default function App() {
           firstLoad={firstLoad}
         />
         {(todos.length === 0 || hasUncompletedTodos) && (
-          <AnimatePresence>
-            <motion.p
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="dark:text-white"
-            >
-              You have nothing to do
-            </motion.p>
-          </AnimatePresence>
+          <motion.p
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="dark:text-white"
+          >
+            You have nothing to do
+          </motion.p>
         )}
         {hasCompletedTodos && (
           <motion.hr
             layout
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            transition={{ duration: 0.175 }}
             className="my-6 h-0.5 rounded border-0 bg-gray-300 dark:bg-gray-600"
           />
         )}
@@ -99,7 +96,7 @@ export default function App() {
           deleteTodo={deleteTodo}
           firstLoad={firstLoad}
         />
-      </LayoutGroup>
+      </div>
     </div>
   );
 }

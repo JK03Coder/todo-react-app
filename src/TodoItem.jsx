@@ -16,7 +16,6 @@ export function TodoItem({
       key={id}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       transition={{ delay: firstLoad ? index * 0.125 : 0 }}
     >
       <label
